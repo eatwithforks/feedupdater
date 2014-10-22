@@ -5,6 +5,8 @@ require 'mechanize'
 require 'pp'
 require 'config'
 require 'gmail'
+require 'RMagick'
+include Magick
 
 updated_counter = 0 # Counter for checking if each iteration has updates
 updated_manga = []
@@ -47,6 +49,11 @@ List.each do |manga|
     updated_counter += 1
     updated_manga << @chapter
   end
+
+  images = Dir["#{SaveDir}/#{@chapter}/*.jpg"]
+  list = ImageList.new
+  list.read(*images.sort)
+  list.write("#{SaveDir}/#{@chapter}/final.pdf")
 end
 
 if updated_counter > 0
