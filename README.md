@@ -5,7 +5,7 @@ Project to fetch manga
 
 Roadmap:
 
-Fix redudant logic that separates pulling 1st image and subsequent images.
+Combine jpgs to 1 pdf strip
 
 Figure out an algorithm to pull from multiple sources.
 
