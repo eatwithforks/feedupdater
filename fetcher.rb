@@ -46,14 +46,15 @@ List.each do |manga|
         break
       end
     end
+    images = Dir["#{SaveDir}/#{@chapter}/*.jpg"]
+    list = ImageList.new
+    list.read(*images.sort)
+    list.write("#{SaveDir}/#{@chapter}/final.pdf")
+    
     updated_counter += 1
     updated_manga << @chapter
   end
 
-  images = Dir["#{SaveDir}/#{@chapter}/*.jpg"]
-  list = ImageList.new
-  list.read(*images.sort)
-  list.write("#{SaveDir}/#{@chapter}/final.pdf")
 end
 
 if updated_counter > 0
