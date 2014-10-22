@@ -12,5 +12,6 @@ List = [
   'Shokugeki',
   'Onepunch Man',
   'Fairy Tail',
-  'Minamoto'
+  'Minamoto',
+  'Lasboss'
 ]

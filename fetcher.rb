@@ -13,10 +13,10 @@ List.each do |manga|
   page = agent.get(Targeturl)
 
   folder = manga.gsub(' ', '_')
-  next if agent.page.links.find { |l| l.text.match(/#{manga}/) }.nil?
+  next if agent.page.links.find { |l| l.text.match(/#{manga}.*\s\d/) }.nil?
 
   results = []
-  results = agent.page.links_with(:text => /#{manga}/)
+  results = agent.page.links_with(:text => /#{manga}.*\s\d/)
   results.each do |release|
     page = release.click
 
