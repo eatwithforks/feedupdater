@@ -1,16 +1,25 @@
 # encoding: utf-8
-$:.unshift File.dirname(__FILE__)
 require 'rubygems'
 require 'mechanize'
-require 'pp'
-require 'config'
 require 'gmail'
+require 'yaml'
+
+config = YAML.load(File.open(File.expand_path('../config.yml', __FILE__)))
+
+my_list = config['my_list']
+save_dir = config['save_dir']
+target_url = config['target_url']
+next_page = config['next_page']
+pic_type = config['pic_type']
+gmail_user = config['gmail_user']
+gmail_pass = config['gmail_pass']
+email_target = config['email_target']
 
 updated_counter = 0 # Counter for checking if each iteration has updates
 updated_manga = []
-List.each do |manga|
+my_list.each do |manga|
   agent = Mechanize.new
-  page = agent.get(Targeturl)
+  page = agent.get(target_url)
 
   folder = manga.gsub(' ', '_')
   next if agent.page.links.find { |l| l.text.match(/#{manga}.*\s\d/) }.nil?
@@ -19,19 +28,19 @@ List.each do |manga|
   results = agent.page.links_with(:text => /#{manga}.*\s\d/)
   results.each do |release|
     page = release.click
-    next if agent.page.links.find { |l| l.text.match(/#{Nextpage}/) }.nil?
+    next if agent.page.links.find { |l| l.text.match(/#{next_page}/) }.nil?
 
-    page.images.each { |e| @metadata = e.url.to_s if e.url.to_s.match(/#{Pictype}/) }
+    page.images.each { |e| @metadata = e.url.to_s if e.url.to_s.match(/#{pic_type}/) }
     @chapter = @metadata.split('/')[-2]
-    next if Dir.exists?("#{SaveDir}/#{@chapter}")
+    next if Dir.exists?("#{save_dir}/#{@chapter}")
 
     images = []
     loop do
       begin
-        page.images.each { |e| @image = e.url.to_s if e.url.to_s.match(/#{Pictype}/) }
+        page.images.each { |e| @image = e.url.to_s if e.url.to_s.match(/#{pic_type}/) }
         images << @image
 
-        next_link = agent.page.link_with(:text => /#{Nextpage}/)
+        next_link = agent.page.link_with(:text => /#{next_page}/)
         page = next_link.click
       rescue Mechanize::UnsupportedSchemeError => e
         break
@@ -42,7 +51,7 @@ List.each do |manga|
       begin
         file_name = pic.split('/')[-1]
         img = agent.get(pic)
-        img.save "#{SaveDir}/#{@chapter}/#{file_name}"
+        img.save "#{save_dir}/#{@chapter}/#{file_name}"
       rescue Mechanize::ResponseCodeError => e
         break
       end
@@ -53,9 +62,9 @@ List.each do |manga|
 end
 
 if updated_counter > 0
-  gmail = Gmail.new(GmailUser, GmailPass)
+  gmail = Gmail.new(gmail_user, gmail_pass)
   gmail.deliver do
-    to Emailtarget
+    to email_target
     subject 'There are new manga updates'
     text_part do
       body updated_manga.join("\n")
