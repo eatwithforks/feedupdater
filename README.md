@@ -1,7 +1,7 @@
 FeedUpdater
 ===========
 
-Project to fetch latest manga automatically
+Project to fetch the latest manga automatically
 
 Features: 
 
