@@ -5,13 +5,15 @@ Project to fetch manga
 
 Roadmap:
 
-Combine jpgs to 1 pdf strip
-
 Figure out an algorithm to pull from multiple sources.
 
 Different sites have different href values for 'next'. 
   -- either consolidate a list for the supported sites or
   -- figure out a regex that'll find the href next
+
+Another Approach: get the total number of pages in a given chapter.
+craft the urls with iterating numbers up to the final count.
+This approach may be the best. (works universally instead of relying on href magic regex or hardcoded list)
 
 Different sites have different names for chapters
   -- figure out if chapters have a ~like~ similarity, don't save.
