@@ -21,6 +21,10 @@ List.each do |manga|
     page = release.click
     next if agent.page.links.find { |l| l.text.match(/#{Nextpage}/) }.nil?
 
+    page.images.each { |e| @metadata = e.url.to_s if e.url.to_s.match(/#{Pictype}/) }
+    @chapter = @metadata.split('/')[-2]
+    next if Dir.exists?("#{SaveDir}/#{@chapter}")
+
     images = []
     loop do
       begin
@@ -37,7 +41,6 @@ List.each do |manga|
     images.each do |pic|
       begin
         file_name = pic.split('/')[-1]
-        @chapter = pic.split('/')[-2]
         img = agent.get(pic)
         img.save "#{SaveDir}/#{@chapter}/#{file_name}"
       rescue Mechanize::ResponseCodeError => e
