@@ -55,8 +55,8 @@ ruby get_series.rb "http://eatmanga.com/Manga-Scan/Naruto/"
 5. Launch Task Scheduler
 6. Create new task, follow the steps (fairly straightforward)
 8. When you get to `Edit Action` 
-9. In `Program/script`, put this `C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe`
-10. In `Add arguments`, put this `-NoProfile -Noninteractive -NoLogo -WindowStyle Hidden C:\Users\JLee\Documents\feedupdater\get_latest.ps1`
+9. In `Program/script`, put `C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe`
+10. In `Add arguments`, put `-NoProfile -Noninteractive -NoLogo -WindowStyle Hidden C:\Users\JLee\Documents\feedupdater\get_latest.ps1`
 11. Edit the directory to your own
 12. I set the task to run on a hourly basis. 
 
