@@ -19,8 +19,12 @@ get_all.rb
 
 1. Source is from http://eatmanga.com
 2. Pass in the series link in the cli
-2. For example, ruby get_all.rb "http://eatmanga.com/Manga-Scan/Naruto/"
 3. Do not re-download chapter if chapter exists in download directory.
+
+For example, 
+```
+ruby get_all.rb "http://eatmanga.com/Manga-Scan/Naruto/"
+```
 
 <b> Usecase <b>
 
