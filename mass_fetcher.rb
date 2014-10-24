@@ -16,7 +16,9 @@ target_url = search_params[0] # http://www.mangahere.co/manga/manga_name/
 folder = search_params[0].split('/')[-1]
 manga = search_params[0].split('/')[-1].split('_')[0]
 
-agent = Mechanize.new
+agent = Mechanize.new do |a|
+  a.ssl_version = :TLSv1
+end
 page = agent.get(target_url)
 
 results = []
