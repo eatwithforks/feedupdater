@@ -38,12 +38,6 @@ ruby get_series.rb "http://eatmanga.com/Manga-Scan/Naruto/"
 * mechanize
 * gmail
 
-<b> Support </b>
-
-The bug tracker is available here:
-
-* https://github.com/eatwithforks/feedupdater/issues
-
 <b> Windows Instructions </b>
 
 1. Install Ruby here: http://rubyinstaller.org/
@@ -65,3 +59,9 @@ The bug tracker is available here:
 10. In `Add arguments`, put this `-NoProfile -Noninteractive -NoLogo -WindowStyle Hidden C:\Users\JLee\Documents\feedupdater\get_latest.ps1`
 11. Edit the directory to your own
 12. I set the task to run on a hourly basis. 
+
+<b> Support </b>
+
+The bug tracker is available here:
+
+* https://github.com/eatwithforks/feedupdater/issues
