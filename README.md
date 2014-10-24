@@ -48,7 +48,7 @@ The bug tracker is available here:
 
 1. Install Ruby here: http://rubyinstaller.org/
 2. Install Development Kit here: http://rubyinstaller.org/downloads/
-3. Run 'Bundle Install' in /feedupdater directory.
+3. Run `Bundle Install` in /feedupdater directory.
 4. Edit config.yml save_dir to your desired save directory. 
 5. Both scripts can be executed by `Ruby script_name.rb`
 
