@@ -5,7 +5,7 @@ Project to fetch the latest manga automatically
 
 Features: 
 
-1. Polls http://eatmanga.com/latest/  (From experience, this site has new updates the fastest)
+1. Polls http://eatmanga.com/latest/  
 2. User sets list of interested manga in config.yml
 3. If an entry matches in http://eatmanga.com/latest, then download chapter(s) and email a notification to the user.
 4. If no entry matches, do nothing and do not send notification.
