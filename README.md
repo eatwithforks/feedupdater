@@ -50,7 +50,7 @@ The bug tracker is available here:
 2. Install Development Kit here: http://rubyinstaller.org/downloads/
 3. Run 'Bundle Install' in /feedupdater directory.
 4. Edit config.yml save_dir to your desired save directory. 
-5. Both scripts can be executed by 'Ruby <script_name.rb>'
+5. Both scripts can be executed by `Ruby script_name.rb`
 
 <b> Windows run get_latest.rb as hidden background task <b>
 
@@ -60,8 +60,8 @@ The bug tracker is available here:
 4. Save the script, I named it get_latest.ps1
 5. Launch Task Scheduler
 6. Create new task, follow the steps
-7. Under 'Edit Action'
-8. In the Program/script field, put this `C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe`
-9. In the Add arguments field, put this `-NoProfile -Noninteractive -NoLogo -WindowStyle Hidden C:\Users\JLee\Documents\feedupdater\get_latest.ps1`
+7. Under `Edit Action`
+8. In the `Program/script field`, put this `C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe`
+9. In the `Add arguments field`, put this `-NoProfile -Noninteractive -NoLogo -WindowStyle Hidden C:\Users\JLee\Documents\feedupdater\get_latest.ps1`
 10. Edit the directory to your own
 11. I set the task to run on a hourly basis. 
