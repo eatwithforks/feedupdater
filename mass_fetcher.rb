@@ -7,61 +7,50 @@ require 'parallel'
 config = YAML.load(File.open(File.expand_path('../config.yml', __FILE__)))
 
 save_dir = config['save_dir']
+next_page = config['next_page']
 pic_type = config['pic_type']
-page_not_found = '404_img.jpg'
 
-search_params = ARGV
-target_url = search_params[0] # http://www.mangahere.co/manga/manga_name/
+target_url = ARGV[0]
+folder = target_url.split('/')[-1]
+manga = target_url.split('/')[-1].split('-')[0]
 
-folder = search_params[0].split('/')[-1]
-manga = search_params[0].split('/')[-1].split('_')[0]
-
-agent = Mechanize.new do |a|
-  a.ssl_version = :TLSv1
-end
+agent = Mechanize.new
 page = agent.get(target_url)
 
 results = []
 results = agent.page.links_with(:text => /#{manga}.*\s\d/i)
 results.reverse!
-fail 'No results' if results.empty?
 pp "#{results.size} chapters found, downloading..."
 
-chapter_counter = 0
 results.each do |release|
-  chapter_counter += 1
   page = release.click
-  url = page.uri.to_s
-  next if Dir.exists?("#{save_dir}/#{folder}/ch#{chapter_counter}")
+  next if agent.page.links.find { |l| l.text.match(/#{next_page}/) }.nil?
 
-  arr = []
-  100.times do |e|
-    arr << "#{url}#{e += 1}.html"
-  end
+  page.images.each { |e| @metadata = e.url.to_s if e.url.to_s.match(/#{pic_type}/) }
+  @chapter = @metadata.split('/')[-2]
+  next if Dir.exists?("#{save_dir}/#{folder}/#{@chapter}")
 
   images = []
-  arr.each do |crafted_url|
+  loop do
     begin
-      @image = page.images[0].to_s if page.images[0].to_s.match(/#{pic_type}/)
-      break if @image.nil?
-      break if @image.match(/#{page_not_found}/)
-
+      page.images.each { |e| @image = e.url.to_s if e.url.to_s.match(/#{pic_type}/) }
       images << @image
-      page = agent.get(crafted_url)
+
+      next_link = agent.page.link_with(:text => /#{next_page}/)
+      page = next_link.click
     rescue Mechanize::UnsupportedSchemeError => e
       break
     end
   end
 
-  images.shift
-  Parallel.each(images, in_threads: 3) do |pic|
+  Parallel.each(images, in_threads: 5) do |pic|
     begin
-      file_name = pic.split('/')[-1].match(/.*#{pic_type}/)
+      file_name = pic.split('/')[-1]
       img = agent.get(pic)
-      img.save "#{save_dir}/#{folder}/ch#{chapter_counter}/#{file_name}"
+      img.save "#{save_dir}/#{folder}/#{@chapter}/#{file_name}"
     rescue Mechanize::ResponseCodeError => e
       break
     end
   end
-  pp "Chapter #{chapter_counter}/#{results.size} is downloaded."
+  pp "#{@chapter} is downloaded."
 end
