@@ -21,7 +21,6 @@ Feature to come:
 
 Mass fetch every chapter of specified manga.
 
-Supported sites:
+Supported site will be:
 
 1. www.mangahere.com
-2. www.kissmanga.com
