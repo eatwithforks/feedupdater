@@ -23,10 +23,10 @@ my_list.each do |manga|
   page = agent.get(target_url)
 
   folder = manga.gsub(' ', '_')
-  next if agent.page.links.find { |l| l.text.match(/#{manga}.*\s\d/) }.nil?
+  next if agent.page.links.find { |l| l.text.match(/#{manga}.*\s\d/i) }.nil?
 
   results = []
-  results = agent.page.links_with(:text => /#{manga}.*\s\d/)
+  results = agent.page.links_with(:text => /#{manga}.*\s\d/i)
   results.each do |release|
     page = release.click
     next if agent.page.links.find { |l| l.text.match(/#{next_page}/) }.nil?
