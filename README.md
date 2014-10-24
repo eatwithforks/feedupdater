@@ -3,7 +3,7 @@ FeedUpdater
 
 <b> Description </b>
 
-Project to download the latest manga and also download an entire series.
+Project to download the latest manga or download an entire series.
 
 <b> Features </b>
 
