@@ -15,7 +15,7 @@ get_latest.rb
 4. If no entry matches, do nothing and do not send notification.
 5. Do not re-download chapter if chapter exists in download directory. 
 
-get_all.rb
+get_series.rb
 
 1. Source is from http://eatmanga.com
 2. Pass in the series link in the cli
@@ -23,7 +23,7 @@ get_all.rb
 
 For example, 
 ```
-ruby get_all.rb "http://eatmanga.com/Manga-Scan/Naruto/"
+ruby get_series.rb "http://eatmanga.com/Manga-Scan/Naruto/"
 ```
 
 <b> Usecase <b>
