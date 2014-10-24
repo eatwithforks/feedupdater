@@ -3,6 +3,7 @@ require 'rubygems'
 require 'mechanize'
 require 'gmail'
 require 'yaml'
+require 'parallel'
 
 config = YAML.load(File.open(File.expand_path('../config.yml', __FILE__)))
 
@@ -47,7 +48,7 @@ my_list.each do |manga|
       end
     end
 
-    images.each do |pic|
+    Parallel.each(images, in_threads: 5) do |pic|
       begin
         file_name = pic.split('/')[-1]
         img = agent.get(pic)
