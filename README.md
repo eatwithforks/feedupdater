@@ -39,6 +39,7 @@ ruby get_all.rb "http://eatmanga.com/Manga-Scan/Naruto/"
 * gmail
 
 <b> Support </b>
+
 The bug tracker is available here:
 
 * https://github.com/eatwithforks/feedupdater/issues
