@@ -52,13 +52,15 @@ ruby get_series.rb "http://eatmanga.com/Manga-Scan/Naruto/"
 2. In the script, write `Invoke-Expression "ruby $env:C:\Users\JLee\Documents\feedupdater\get_latest.rb" `
 3. Edit the Directory to your own
 4. Save the script, I named it get_latest.ps1
-5. Launch Task Scheduler
-6. Create new task, follow the steps (fairly straightforward)
-8. When you get to `Edit Action` 
-9. In `Program/script`, put `C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe`
-10. In `Add arguments`, put `-NoProfile -Noninteractive -NoLogo -WindowStyle Hidden C:\Users\JLee\Documents\feedupdater\get_latest.ps1`
-11. Edit the directory to your own
-12. I set the task to run on a hourly basis. 
+5. Launch Windows Powershell
+6. Enter `Set-ExecutionPolicy Unrestricted` 
+7. Launch Task Scheduler
+8. Create new task, follow the steps (fairly straightforward)
+9. When you get to `Edit Action` 
+10. In `Program/script`, put `C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe`
+11. In `Add arguments`, put `-NoProfile -Noninteractive -NoLogo -WindowStyle Hidden C:\Users\JLee\Documents\feedupdater\get_latest.ps1`
+12. Edit the directory to your own
+13. I set the task to run on a hourly basis. 
 
 <b> Support </b>
 
