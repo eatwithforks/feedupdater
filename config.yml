@@ -1,10 +1,16 @@
 save_dir : '/Users/jlee/Desktop/Manga'
-target_url : 'http://eatmanga.com/latest/'
+
+main_url : 'http://eatmanga.com' 
+latest_url : 'http://eatmanga.com/latest/'
+manga_dir : 'http://eatmanga.com/Manga-Scan/'
+
 next_page : 'next page'
 pic_type : '.jpg'
+
 gmail_user : 'Jlee.feedupdater@gmail.com'
 gmail_pass : 'foobar123'
 email_target : 'jyelee124@gmail.com'
+
 my_list :
 - 'Naruto'
 - 'Bleach'
