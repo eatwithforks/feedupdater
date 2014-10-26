@@ -1,0 +1,1 @@
+﻿Invoke-Expression "ruby $env:C:\Users\JLee\Documents\feedupdater\get_latest.rb"
