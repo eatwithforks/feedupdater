@@ -26,8 +26,8 @@ ruby get_series.rb shigatsu
 
 Output:
 More than 1 result found, please enter a number:
-1: Shigatsu-No-Hina
-2: Shigatsu-wa-Kimi-no-Uso
+1: Shigatsu No Hina
+2: Shigatsu wa Kimi no Uso
 2
 "23 chapters found, downloading..."
 "Shigatsu-wa-Kimi-no-Uso-001 is downloaded."
