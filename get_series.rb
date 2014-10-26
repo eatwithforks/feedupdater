@@ -23,7 +23,7 @@ unless search.empty?
   urls = []
   findings = []
   search.each { |e| urls << e.uri.to_s }
-    urls.each do |e|
+  urls.each do |e|
     arr = e.split('/')
     arr.pop
     convert = arr.join('/')
