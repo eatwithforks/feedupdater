@@ -36,7 +36,7 @@ unless search.empty?
     puts "More than 1 result found, please enter a number:"
     to_hash = []
     findings.each do |finding|
-      puts "#{count += 1}: #{finding.split('/')[-1]}"
+      puts "#{count += 1}: #{finding.split('/')[-1].gsub('-',' ')}"
       to_hash << count
       to_hash << finding
     end
