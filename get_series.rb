@@ -6,15 +6,53 @@ require 'parallel'
 
 config = YAML.load(File.open(File.expand_path('../config.yml', __FILE__)))
 
+manga_dir = config['manga_dir']
+main_url = config['main_url']
 save_dir = config['save_dir']
 next_page = config['next_page']
 pic_type = config['pic_type']
 
-target_url = ARGV[0]
-folder = target_url.split('/')[-1]
-manga = target_url.split('/')[-1].split('-')[0]
+manga = ARGV[0]
 
 agent = Mechanize.new
+agent.get(manga_dir)
+
+search = agent.page.links_with(:text => /#{manga}.*\s\d/i)
+puts 'No series found.' if search.empty?
+ unless search.empty?
+   urls = []
+   findings = []
+   search.each { |e| urls << e.uri.to_s }
+   urls.each do |e|
+     arr = e.split('/')
+     arr.pop
+     convert = arr.join('/')
+     findings << convert
+   end
+
+   findings.map! { |e| e = "#{main_url}#{e}" }
+ end
+
+count = 0
+if findings.size > 1
+  puts "More than 1 result found, please enter a number:"
+  to_hash = []
+  findings.each do |finding|
+    puts "#{count += 1}: #{finding}"
+    to_hash << count
+    to_hash << finding
+  end
+
+  data = Hash[*to_hash]
+  user_input = $stdin.gets.chomp
+  selection = user_input.to_i
+  target_url = data[selection]
+else
+  target_url = findings[0]
+end
+
+folder = target_url.split('/')[-1]
+manga = target_url.split('/')[-1].split('-')[0]
 page = agent.get(target_url)
 
 results = []
