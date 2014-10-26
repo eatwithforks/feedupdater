@@ -9,7 +9,7 @@ config = YAML.load(File.open(File.expand_path('../config.yml', __FILE__)))
 
 my_list = config['my_list']
 save_dir = config['save_dir']
-target_url = config['target_url']
+target_url = config['latest_url']
 next_page = config['next_page']
 pic_type = config['pic_type']
 gmail_user = config['gmail_user']
