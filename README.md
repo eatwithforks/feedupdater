@@ -15,6 +15,12 @@ get_latest.rb
 4. If no entry matches, do nothing and do not send notification.
 5. Do not re-download chapter if chapter exists in download directory. 
 
+find_series.rb
+
+1. Searches to see if manga is in site's list.
+2. To use, `Ruby find_series.rb 'manga_name'`
+3. Paste the result as an argument to get_series.rb to download entire series
+
 get_series.rb
 
 1. Source is from http://eatmanga.com
