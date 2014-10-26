@@ -43,7 +43,7 @@ etc
 
 * ruby 1.9.3 or newer
 * mechanize
-* gmail
+* gmail (Not required if you don't want email notifications)
 
 <b> Windows Instructions </b>
 
