@@ -13,12 +13,10 @@ next_page = config['next_page']
 pic_type = config['pic_type']
 
 manga = ARGV[0]
-
 agent = Mechanize.new
 agent.get(manga_dir)
 
 search = agent.page.links_with(:text => /#{manga}.*\s\d/i)
-puts 'No series found.' if search.empty?
 unless search.empty?
   urls = []
   findings = []
@@ -30,6 +28,7 @@ unless search.empty?
     findings << convert
   end
 
+  findings.delete_if { |e| e == '/Manga-Scan' }
   findings.map! { |e| e = "#{main_url}#{e}" }
 
   count = 0
@@ -37,7 +36,7 @@ unless search.empty?
     puts "More than 1 result found, please enter a number:"
     to_hash = []
     findings.each do |finding|
-      puts "#{count += 1}: #{finding}"
+      puts "#{count += 1}: #{finding.split('/')[-1]}"
       to_hash << count
       to_hash << finding
     end
