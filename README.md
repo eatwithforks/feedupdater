@@ -15,23 +15,24 @@ get_latest.rb
 4. If no entry matches, do nothing and do not send notification.
 5. Do not re-download chapter if chapter exists in download directory. 
 
-find_series.rb
-
-1. Searches to see if manga is in site's list.
-2. To use, `Ruby find_series.rb 'manga_name'`
-3. Paste the result as an argument to get_series.rb to download entire series
-
 get_series.rb
 
 1. Source is from http://eatmanga.com
-2. Pass in the series link in the cli
+2. To download a series, `ruby get_series.rb 'manga_name'` 
 3. Do not re-download chapter if chapter exists in download directory.
-
-For example, 
+4. Supports partial searching, for example:
 ```
-ruby get_series.rb "http://eatmanga.com/Manga-Scan/Naruto/"
-```
+ruby get_series.rb shigatsu
 
+Output:
+More than 1 result found, please enter a number:
+1: http://eatmanga.com/Manga-Scan/Shigatsu-No-Hina
+2: http://eatmanga.com/Manga-Scan/Shigatsu-wa-Kimi-no-Uso
+2
+"23 chapters found, downloading..."
+"Shigatsu-wa-Kimi-no-Uso-001 is downloaded."
+etc
+```
 <b> Usecase <b>
 
 1. Set a cronjob to execute fetcher.rb on a hourly basis. (can be adjusted by user)
