@@ -31,14 +31,14 @@ my_list.each do |manga|
     page = release.click
     next if agent.page.links.find { |l| l.text.match(/#{next_page}/) }.nil?
 
-    page.images.each { |e| @metadata = e.url.to_s if e.url.to_s.match(/#{pic_type}/) }
+    page.images.each { |e| @metadata = e.url.to_s if e.url.to_s.match(/#{pic_type}/i) }
     @chapter = @metadata.split('/')[-2]
     next if Dir.exists?("#{save_dir}/#{@chapter}")
 
     images = []
     loop do
       begin
-        page.images.each { |e| @image = e.url.to_s if e.url.to_s.match(/#{pic_type}/) }
+        page.images.each { |e| @image = e.url.to_s if e.url.to_s.match(/#{pic_type}/i) }
         images << @image
 
         next_link = agent.page.link_with(:text => /#{next_page}/)
